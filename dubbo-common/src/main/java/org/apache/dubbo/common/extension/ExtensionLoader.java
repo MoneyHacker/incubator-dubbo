@@ -212,9 +212,9 @@ public class ExtensionLoader<T> {
                 if (activate instanceof Activate) {
                     activateGroup = ((Activate) activate).group();
                     activateValue = ((Activate) activate).value();
-                } else if (activate instanceof com.alibaba.dubbo.common.extension.Activate) {
-                    activateGroup = ((com.alibaba.dubbo.common.extension.Activate) activate).group();
-                    activateValue = ((com.alibaba.dubbo.common.extension.Activate) activate).value();
+                } else if (activate instanceof org.apache.dubbo.common.extension.Activate) {
+                    activateGroup =  ((org.apache.dubbo.common.extension.Activate) activate).group();
+                    activateValue = ((org.apache.dubbo.common.extension.Activate) activate).value();
                 } else {
                     continue;
                 }
@@ -713,11 +713,11 @@ public class ExtensionLoader<T> {
                 if (activate != null) {
                     cachedActivates.put(names[0], activate);
                 } else {
-                    // support com.alibaba.dubbo.common.extension.Activate
-                    com.alibaba.dubbo.common.extension.Activate oldActivate = clazz.getAnnotation(com.alibaba.dubbo.common.extension.Activate.class);
-                    if (oldActivate != null) {
-                        cachedActivates.put(names[0], oldActivate);
-                    }
+//                    // support com.alibaba.dubbo.common.extension.Activate
+//                    org.apache.dubbo.common.extension.Activate oldActivate = clazz.getAnnotation(com.alibaba.dubbo.common.extension.Activate.class);
+//                    if (oldActivate != null) {
+//                        cachedActivates.put(names[0], oldActivate);
+//                    }
                 }
                 for (String n : names) {
                     if (!cachedNames.containsKey(clazz)) {
