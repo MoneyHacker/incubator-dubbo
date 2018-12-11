@@ -17,15 +17,7 @@
 package org.apache.dubbo.config.spring.schema;
 
 import org.apache.dubbo.common.Version;
-import org.apache.dubbo.config.ApplicationConfig;
-import org.apache.dubbo.config.ConsumerConfig;
-import org.apache.dubbo.config.ModuleConfig;
-import org.apache.dubbo.config.MonitorConfig;
-import org.apache.dubbo.config.ProtocolConfig;
-import org.apache.dubbo.config.ProviderConfig;
-import org.apache.dubbo.config.RegistryConfig;
-import org.apache.dubbo.config.spring.ReferenceBean;
-import org.apache.dubbo.config.spring.ServiceBean;
+
 
 import org.springframework.beans.factory.xml.NamespaceHandlerSupport;
 
@@ -55,3 +47,4 @@ public class DubboNamespaceHandler extends NamespaceHandlerSupport {
     }
 
 }
+

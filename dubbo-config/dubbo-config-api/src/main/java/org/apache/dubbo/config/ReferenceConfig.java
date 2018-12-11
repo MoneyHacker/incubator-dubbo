@@ -81,6 +81,7 @@ public class ReferenceConfig<T> extends AbstractReferenceConfig {
     // default config
     private ConsumerConfig consumer;
     private String protocol;
+    private Reference reference;
     // interface proxy reference
     private transient volatile T ref;
     private transient volatile Invoker<?> invoker;
@@ -110,8 +111,9 @@ public class ReferenceConfig<T> extends AbstractReferenceConfig {
     }
 
     public ReferenceConfig(Reference reference) {
-        appendAnnotation(Reference.class, reference);
+        this.reference = reference;
     }
+
 
     public URL toUrl() {
         return urls.isEmpty() ? null : urls.iterator().next();

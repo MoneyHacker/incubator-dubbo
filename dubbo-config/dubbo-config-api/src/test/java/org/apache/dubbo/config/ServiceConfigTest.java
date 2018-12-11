@@ -84,6 +84,7 @@ public class ServiceConfigTest {
         method.setName("echo");
         method.setArguments(Collections.singletonList(argument));
 
+
         //service.setProvider(provider);
         service.setApplication(app);
         service.setRegistry(registry);
@@ -92,6 +93,7 @@ public class ServiceConfigTest {
         service.setMethods(Collections.singletonList(method));
 
        // service2.setProvider(provider);
+
         service2.setApplication(app);
         service2.setRegistry(registry);
         service2.setInterface(DemoService.class);

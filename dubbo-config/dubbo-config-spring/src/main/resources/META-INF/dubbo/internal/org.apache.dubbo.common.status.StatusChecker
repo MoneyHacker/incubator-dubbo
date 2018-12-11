@@ -1,2 +1,6 @@
+<<<<<<< HEAD
 spring=org.apache.dubbo.config.spring.status.SpringStatusChecker
+=======
+spring=org.apache.dubbo.config.spring.status.SpringStatusChecker
+>>>>>>> upstream/master
 datasource=org.apache.dubbo.config.spring.status.DataSourceStatusChecker

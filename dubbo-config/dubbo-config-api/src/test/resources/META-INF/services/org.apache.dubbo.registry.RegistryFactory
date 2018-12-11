@@ -1,2 +1,7 @@
+<<<<<<< HEAD
 mockregistry=org.apache.dubbo.config.mock.MockRegistryFactory
 mockprotocol2=org.apache.dubbo.config.mock.MockRegistryFactory2
+=======
+mockregistry=org.apache.dubbo.config.mock.MockRegistryFactory
+mockprotocol2=org.apache.dubbo.config.mock.MockRegistryFactory2
+>>>>>>> upstream/master
