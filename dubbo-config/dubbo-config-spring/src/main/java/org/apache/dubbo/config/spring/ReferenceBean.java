@@ -18,12 +18,17 @@ package org.apache.dubbo.config.spring;
 
 import org.apache.dubbo.config.ReferenceConfig;
 import org.apache.dubbo.config.annotation.Reference;
+import org.apache.dubbo.config.support.Parameter;
+import org.springframework.beans.factory.DisposableBean;
+import org.springframework.beans.factory.FactoryBean;
+import org.springframework.beans.factory.InitializingBean;
+import org.springframework.context.ApplicationContextAware;
 
 
 /**
  * ReferenceFactoryBean
  */
-public class ReferenceBean<T> extends ReferenceConfig<T> /*implements FactoryBean, ApplicationContextAware, InitializingBean, DisposableBean*/ {
+public class ReferenceBean<T> extends ReferenceConfig<T> implements FactoryBean {
 
     private static final long serialVersionUID = 213195494150089726L;
 
@@ -34,9 +39,20 @@ public class ReferenceBean<T> extends ReferenceConfig<T> /*implements FactoryBea
     public ReferenceBean(Reference reference) {
         super(reference);
     }
-
+    @Override
     public T getObject() {
         return super.get();
+    }
+
+    @Override
+    public Class<?> getObjectType() {
+        return getInterfaceClass();
+    }
+
+    @Override
+    @Parameter(excluded = true)
+    public boolean isSingleton() {
+        return true;
     }
 
 

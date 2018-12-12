@@ -15,19 +15,12 @@
  * limitations under the License.
  */
 package org.apache.dubbo.config;
-
-import lombok.Getter;
-import lombok.Setter;
-import org.apache.dubbo.common.Constants;
 import org.apache.dubbo.common.URL;
 import org.apache.dubbo.common.extension.ExtensionLoader;
 import org.apache.dubbo.config.annotation.Reference;
 import org.apache.dubbo.config.spi.ServiceImporter;
 import org.apache.dubbo.config.support.Parameter;
 import org.apache.dubbo.rpc.Invoker;
-import org.apache.dubbo.rpc.Protocol;
-import org.apache.dubbo.rpc.ProxyFactory;
-import org.apache.dubbo.rpc.cluster.Cluster;
 import org.apache.dubbo.rpc.service.GenericService;
 import java.util.ArrayList;
 import java.util.List;

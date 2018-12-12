@@ -60,7 +60,7 @@
         </property>
     </bean>
     <!-- declare the service interface to be exported -->
-    <bean id="demoService" class="org.apache.dubbo.config.ReferenceConfig">
+    <bean id="demoService" class="org.apache.dubbo.config.spring.ReferenceBean">
         <property name="interface" value="org.apache.dubbo.demo.DemoService"></property>
         <property name="application" ref="dubbo"></property>
 
