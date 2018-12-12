@@ -29,36 +29,23 @@ import java.util.List;
  * @export
  */
 public abstract class AbstractServiceConfig extends AbstractInterfaceConfig {
-
     private static final long serialVersionUID = 1L;
-
     // version
     protected String version;
-
-    // group
-    protected String group;
-
     // whether the service is deprecated
     protected Boolean deprecated;
-
     // delay service exporting
     protected Integer delay;
-
     // whether to export the service
     protected Boolean export;
-
     // weight
     protected Integer weight;
-
     // document center
     protected String document;
-
     // whether to register as a dynamic service or not on register center
     protected Boolean dynamic;
-
     // whether to use token
     protected String token;
-
     // access log
     protected String accesslog;
     protected List<ProtocolConfig> protocols;
@@ -66,16 +53,12 @@ public abstract class AbstractServiceConfig extends AbstractInterfaceConfig {
     private Integer executes;
     // whether to register
     private Boolean register;
-
     // warm up period
     private Integer warmup;
-
     // serialization
     private String serialization;
-
     // provider tag
     protected String tag;
-
     public String getVersion() {
         return version;
     }

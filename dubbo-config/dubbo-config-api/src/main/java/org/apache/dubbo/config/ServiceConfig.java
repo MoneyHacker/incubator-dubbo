@@ -16,52 +16,18 @@
  */
 package org.apache.dubbo.config;
 
-import lombok.Getter;
 import org.apache.dubbo.common.Constants;
 import org.apache.dubbo.common.URL;
-import org.apache.dubbo.common.Version;
-import org.apache.dubbo.common.bytecode.Wrapper;
-import org.apache.dubbo.common.extension.ExtensionLoader;
-import org.apache.dubbo.common.utils.ClassHelper;
-import org.apache.dubbo.common.utils.ConfigUtils;
-import org.apache.dubbo.common.utils.NamedThreadFactory;
+
 import org.apache.dubbo.common.utils.StringUtils;
 import org.apache.dubbo.config.annotation.Service;
-import org.apache.dubbo.config.invoker.DelegateProviderMetaDataInvoker;
 import org.apache.dubbo.config.support.Parameter;
-import org.apache.dubbo.config.utils.DubboConfigUtil;
 import org.apache.dubbo.rpc.Exporter;
-import org.apache.dubbo.rpc.Invoker;
-import org.apache.dubbo.rpc.Protocol;
-import org.apache.dubbo.rpc.ProxyFactory;
-import org.apache.dubbo.rpc.cluster.ConfiguratorFactory;
-import org.apache.dubbo.rpc.model.ApplicationModel;
-import org.apache.dubbo.rpc.model.ProviderModel;
 import org.apache.dubbo.rpc.service.GenericService;
 import org.apache.dubbo.rpc.support.ProtocolUtils;
-
-import java.lang.reflect.Method;
-import java.net.InetAddress;
-import java.net.InetSocketAddress;
-import java.net.Socket;
-import java.net.SocketAddress;
-import java.net.UnknownHostException;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
-import java.util.UUID;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
 
-import static org.apache.dubbo.common.utils.NetUtils.LOCALHOST;
-import static org.apache.dubbo.common.utils.NetUtils.getAvailablePort;
-import static org.apache.dubbo.common.utils.NetUtils.getLocalHost;
-import static org.apache.dubbo.common.utils.NetUtils.isInvalidLocalHost;
-import static org.apache.dubbo.common.utils.NetUtils.isInvalidPort;
 
 /**
  * ServiceConfig
@@ -70,12 +36,8 @@ import static org.apache.dubbo.common.utils.NetUtils.isInvalidPort;
  */
 public class ServiceConfig<T> extends AbstractServiceConfig {
     private static final long serialVersionUID = 3033787999037024738L;
-
-
     private final List<URL> urls = new ArrayList<>();
-    private final List<Exporter<?>> exporters = new ArrayList<Exporter<?>>();
-
-
+    private final List<Exporter<?>> exporters = new ArrayList<>();
     // interface type
     private String interfaceName;
     private Class<?> interfaceClass;
@@ -124,21 +86,6 @@ public class ServiceConfig<T> extends AbstractServiceConfig {
     @Parameter(excluded = true)
     public boolean isUnexported() {
         return unexported;
-    }
-
-
-
-
-    private void checkRef() {
-        // reference should not be null, and is the implementation of the given interface
-        if (ref == null) {
-            throw new IllegalStateException("ref not allow null!");
-        }
-        if (!interfaceClass.isInstance(ref)) {
-            throw new IllegalStateException("The class "
-                    + ref.getClass().getName() + " unimplemented interface "
-                    + interfaceClass + "!");
-        }
     }
 
     public synchronized void unexport() {
@@ -233,22 +180,16 @@ public class ServiceConfig<T> extends AbstractServiceConfig {
         return methods;
     }
 
-    // ======== Deprecated ========
-
     @SuppressWarnings("unchecked")
     public void setMethods(List<? extends MethodConfig> methods) {
         this.methods = (List<MethodConfig>) methods;
     }
-
     public ProviderConfig getProvider() {
         return application.getProviderConfig();
     }
-
-
     public String getGeneric() {
         return generic;
     }
-
     public void setGeneric(String generic) {
         if (StringUtils.isEmpty(generic)) {
             return;
@@ -259,7 +200,6 @@ public class ServiceConfig<T> extends AbstractServiceConfig {
             throw new IllegalArgumentException("Unsupported generic type " + generic);
         }
     }
-
     @Override
     public void setMock(Boolean mock) {
         throw new IllegalArgumentException("mock doesn't support on provider side");

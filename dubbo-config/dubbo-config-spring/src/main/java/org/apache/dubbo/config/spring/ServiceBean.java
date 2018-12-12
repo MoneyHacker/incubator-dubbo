@@ -15,32 +15,9 @@
  * limitations under the License.
  */
 package org.apache.dubbo.config.spring;
-
-import org.apache.dubbo.config.ApplicationConfig;
-import org.apache.dubbo.config.ModuleConfig;
-import org.apache.dubbo.config.MonitorConfig;
-import org.apache.dubbo.config.ProtocolConfig;
-import org.apache.dubbo.config.ProviderConfig;
-import org.apache.dubbo.config.RegistryConfig;
 import org.apache.dubbo.config.ServiceConfig;
 import org.apache.dubbo.config.annotation.Service;
-import org.apache.dubbo.config.spring.extension.SpringExtensionFactory;
-
 import org.springframework.aop.support.AopUtils;
-import org.springframework.beans.factory.BeanFactoryUtils;
-import org.springframework.beans.factory.BeanNameAware;
-import org.springframework.beans.factory.DisposableBean;
-import org.springframework.beans.factory.InitializingBean;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.ApplicationContextAware;
-import org.springframework.context.ApplicationListener;
-import org.springframework.context.event.ContextRefreshedEvent;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-
-import static org.apache.dubbo.config.spring.util.BeanFactoryUtils.addApplicationListener;
 
 /**
  * ServiceFactoryBean
@@ -48,17 +25,9 @@ import static org.apache.dubbo.config.spring.util.BeanFactoryUtils.addApplicatio
  * @export
  */
 public class ServiceBean<T> extends ServiceConfig<T>  {
-
     private static final long serialVersionUID = 213195494150089726L;
-
     private final transient Service service;
-
-    private transient ApplicationContext applicationContext;
-
-    private transient String beanName;
-
-    private transient boolean supportedApplicationListener;
-
+    private transient String name;
     public ServiceBean() {
         super();
         this.service = null;
@@ -69,19 +38,13 @@ public class ServiceBean<T> extends ServiceConfig<T>  {
         this.service = service;
     }
 
-    public void setApplicationContext(ApplicationContext applicationContext) {
-        this.applicationContext = applicationContext;
-        SpringExtensionFactory.addApplicationContext(applicationContext);
-        //supportedApplicationListener = addApplicationListener(applicationContext, this);
-    }
 
-    public void setBeanName(String name) {
-        this.beanName = name;
+    public void setName(String name) {
+        this.name = name;
     }
 
     /**
      * Gets associated {@link Service}
-     *
      * @return associated {@link Service}
      */
     public Service getService() {
@@ -90,13 +53,11 @@ public class ServiceBean<T> extends ServiceConfig<T>  {
 
 
     @SuppressWarnings({"unchecked", "deprecation"})
-
     public void destroy() throws Exception {
         // no need to call unexport() here, see
         // org.apache.dubbo.config.spring.extension.SpringExtensionFactory.ShutdownHookListener
     }
 
-    // merged from dubbox
     @Override
     protected Class getServiceClass(T ref) {
         if (AopUtils.isAopProxy(ref)) {
