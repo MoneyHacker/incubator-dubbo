@@ -32,9 +32,8 @@ import java.util.*;
 import static org.apache.dubbo.common.utils.NetUtils.isInvalidLocalHost;
 
 /**
- * Created by lvxiang@ganji.com 2018/12/10 18:16
+ * Created by lvxiang 2018/12/10 18:16
  *
- * @author <a href="mailto:lvxiang@ganji.com">simple</a>
  */
 public class DubboServiceImporter implements ServiceImporter {
     protected static final Logger logger = LoggerFactory.getLogger(DubboServiceImporter.class);
