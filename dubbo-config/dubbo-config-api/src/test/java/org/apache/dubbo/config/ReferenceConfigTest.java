@@ -17,13 +17,21 @@
 package org.apache.dubbo.config;
 
 import org.apache.dubbo.common.Constants;
+import org.apache.dubbo.common.extension.ExtensionLoader;
+import org.apache.dubbo.common.utils.NamedThreadFactory;
 import org.apache.dubbo.config.api.DemoService;
 import org.apache.dubbo.config.provider.impl.DemoServiceImpl;
 
+import org.apache.dubbo.config.spi.ServiceExporter;
+import org.apache.dubbo.rpc.Protocol;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+
 public class ReferenceConfigTest {
+    private static final ServiceExporter serviceExporter = ExtensionLoader.getExtensionLoader(ServiceExporter.class).getDefaultExtension();
 
     @Test
     public void testInjvm() throws Exception {
@@ -51,7 +59,8 @@ public class ReferenceConfigTest {
         rc.setInjvm(false);
 
         try {
-            demoService.export();
+            serviceExporter.doExport("",demoService);
+           // demoService.export();
             rc.get();
             Assert.assertTrue(!Constants.LOCAL_PROTOCOL.equalsIgnoreCase(
                     rc.getInvoker().getUrl().getProtocol()));
@@ -95,7 +104,9 @@ public class ReferenceConfigTest {
         sc.setProtocol(protocol);
 
         try {
-            sc.export();
+            serviceExporter.doExport("",sc);
+
+            //sc.export();
             demoService = rc.get();
             success = true;
         } catch (Exception e) {

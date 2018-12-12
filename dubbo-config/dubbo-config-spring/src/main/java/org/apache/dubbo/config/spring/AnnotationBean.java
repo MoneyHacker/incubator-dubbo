@@ -189,7 +189,7 @@ public class AnnotationBean extends AbstractConfig implements DisposableBean, Be
                     serviceConfig.setTag(service.tag());
                 }
                 try {
-                    serviceConfig.afterPropertiesSet();
+                   // serviceConfig.afterPropertiesSet();
                 } catch (RuntimeException e) {
                     throw e;
                 } catch (Exception e) {
@@ -197,7 +197,7 @@ public class AnnotationBean extends AbstractConfig implements DisposableBean, Be
                 }
             }
             serviceConfigs.add(serviceConfig);
-            serviceConfig.export();
+            //serviceConfig.export();
         }
         return bean;
     }

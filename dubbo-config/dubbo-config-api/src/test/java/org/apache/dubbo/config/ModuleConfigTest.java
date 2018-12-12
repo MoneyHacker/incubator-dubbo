@@ -17,6 +17,7 @@
 
 package org.apache.dubbo.config;
 
+import org.apache.dubbo.config.utils.DubboConfigUtil;
 import org.hamcrest.Matchers;
 import org.junit.Test;
 
@@ -36,7 +37,7 @@ public class ModuleConfigTest {
     public void testName1() throws Exception {
         ModuleConfig module = new ModuleConfig();
         Map<String, String> parameters = new HashMap<String, String>();
-        ModuleConfig.appendParameters(parameters, module);
+        DubboConfigUtil.appendParameters(parameters, module);
     }
 
     @Test
@@ -46,7 +47,7 @@ public class ModuleConfigTest {
         assertThat(module.getName(), equalTo("module-name"));
         assertThat(module.getId(), equalTo("module-name"));
         Map<String, String> parameters = new HashMap<String, String>();
-        ModuleConfig.appendParameters(parameters, module);
+        DubboConfigUtil.appendParameters(parameters, module);
         assertThat(parameters, hasEntry("module", "module-name"));
     }
 
@@ -57,7 +58,7 @@ public class ModuleConfigTest {
         module.setVersion("1.0.0");
         assertThat(module.getVersion(), equalTo("1.0.0"));
         Map<String, String> parameters = new HashMap<String, String>();
-        ModuleConfig.appendParameters(parameters, module);
+        DubboConfigUtil.appendParameters(parameters, module);
         assertThat(parameters, hasEntry("module.version", "1.0.0"));
     }
 

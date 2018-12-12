@@ -8,5 +8,5 @@ import org.apache.dubbo.common.extension.SPI;
  */
 @SPI("dubboServiceImporter")
 public interface ServiceImporter {
-       void doImport(String beanName, Object bean);
+       <T> T doImport(String beanName, Object bean);
 }

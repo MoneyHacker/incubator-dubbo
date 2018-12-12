@@ -16,6 +16,7 @@
  */
 package org.apache.dubbo.config;
 
+import lombok.Getter;
 import org.apache.dubbo.common.Constants;
 import org.apache.dubbo.config.support.Parameter;
 import org.apache.dubbo.rpc.InvokerListener;
@@ -32,6 +33,8 @@ public abstract class AbstractReferenceConfig extends AbstractInterfaceConfig {
     private static final long serialVersionUID = -2786526984373031126L;
 
     // ======== Reference config default values, will take effect if reference's attribute is not set  ========
+
+
 
     // check if service provider exists
     protected Boolean check;
@@ -58,8 +61,6 @@ public abstract class AbstractReferenceConfig extends AbstractInterfaceConfig {
     // version
     protected String version;
 
-    // group
-    protected String group;
 
     public Boolean isCheck() {
         return check;
@@ -189,12 +190,5 @@ public abstract class AbstractReferenceConfig extends AbstractInterfaceConfig {
         this.version = version;
     }
 
-    public String getGroup() {
-        return group;
-    }
 
-    public void setGroup(String group) {
-        checkKey("group", group);
-        this.group = group;
-    }
 }

@@ -91,6 +91,27 @@ public class ApplicationConfig extends AbstractConfig {
      * add by lvxiang 2018-12-11 11:19
      */
     private ProviderConfig providerConfig;
+    private ConsumerConfig consumerConfig;
+    private ProtocolConfig protocolConfig;
+
+    public ProtocolConfig getProtocolConfig() {
+        return protocolConfig;
+    }
+
+    public void setProtocolConfig(ProtocolConfig protocolConfig) {
+        this.protocolConfig = protocolConfig;
+    }
+
+    public ConsumerConfig getConsumerConfig() {
+        return consumerConfig;
+    }
+
+    public void setConsumerConfig(ConsumerConfig consumerConfig) {
+        this.consumerConfig = consumerConfig;
+    }
+
+
+
 
     public ProviderConfig getProviderConfig() {
         return this.providerConfig;

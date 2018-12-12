@@ -27,6 +27,7 @@ import org.apache.dubbo.config.api.DemoException;
 import org.apache.dubbo.config.api.DemoService;
 import org.apache.dubbo.config.api.User;
 import org.apache.dubbo.config.provider.impl.DemoServiceImpl;
+import org.apache.dubbo.config.spi.ServiceExporter;
 import org.apache.dubbo.rpc.service.GenericException;
 import org.apache.dubbo.rpc.service.GenericService;
 
@@ -45,7 +46,7 @@ import java.util.concurrent.atomic.AtomicReference;
  * GenericServiceTest
  */
 public class GenericServiceTest {
-
+    ServiceExporter serviceExporter = ExtensionLoader.getExtensionLoader(ServiceExporter.class).getDefaultExtension();
     @Test
     public void testGenericServiceException() {
         ServiceConfig<GenericService> service = new ServiceConfig<GenericService>();
@@ -69,7 +70,8 @@ public class GenericServiceTest {
                 return null;
             }
         });
-        service.export();
+        serviceExporter.doExport("",service);
+       // service.export();
         try {
             ReferenceConfig<DemoService> reference = new ReferenceConfig<DemoService>();
             reference.setApplication(new ApplicationConfig("generic-consumer"));
@@ -108,7 +110,9 @@ public class GenericServiceTest {
         service.setProtocol(new ProtocolConfig("dubbo", 29581));
         service.setInterface(DemoService.class.getName());
         service.setRef(new DemoServiceImpl());
-        service.export();
+       // service.export();
+        serviceExporter.doExport("",service);
+
         try {
             ReferenceConfig<GenericService> reference = new ReferenceConfig<GenericService>();
             reference.setApplication(new ApplicationConfig("generic-consumer"));
@@ -142,7 +146,8 @@ public class GenericServiceTest {
         service.setInterface(DemoService.class.getName());
         DemoServiceImpl ref = new DemoServiceImpl();
         service.setRef(ref);
-        service.export();
+        //service.export();
+        serviceExporter.doExport("",service);
         try {
             ReferenceConfig<GenericService> reference = new ReferenceConfig<GenericService>();
             reference.setApplication(new ApplicationConfig("generic-consumer"));
@@ -210,7 +215,8 @@ public class GenericServiceTest {
         DemoServiceImpl impl = new DemoServiceImpl();
         service.setRef(impl);
         service.setProtocol(new ProtocolConfig("dubbo", 29581));
-        service.export();
+        //service.export();
+        serviceExporter.doExport("",service);
         ReferenceConfig<GenericService> reference = null;
         try {
             reference = new ReferenceConfig<GenericService>();
@@ -264,7 +270,8 @@ public class GenericServiceTest {
                 return args;
             }
         });
-        service.export();
+        //service.export();
+        serviceExporter.doExport("",service);
         ReferenceConfig<DemoService> ref = null;
         try {
             ref = new ReferenceConfig<DemoService>();

@@ -27,6 +27,8 @@
         <property name="shutwait" value="2000"></property>
         <property name="monitor" ref="monitor" />
         <property name="providerConfig" ref="provider" />
+        <property name="protocolConfig" ref="protocol" />
+
         <property name="registries">
             <list>
                 <ref bean="registry" />

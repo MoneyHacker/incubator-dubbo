@@ -16,10 +16,8 @@
   limitations under the License.
   -->
 <beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xmlns:dubbo="http://dubbo.apache.org/schema/dubbo"
        xmlns="http://www.springframework.org/schema/beans"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
-       http://dubbo.apache.org/schema/dubbo http://dubbo.apache.org/schema/dubbo/dubbo.xsd">
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd">
     <!-- 处理rpc Bean-->
     <bean id="rpcBeanProcessor" class="org.apache.dubbo.config.spring.DubboBeanProcessor"/>
 
@@ -29,6 +27,7 @@
         <property name="shutwait" value="2000"></property>
         <property name="monitor" ref="monitor" />
         <property name="providerConfig" ref="provider" />
+        <property name="consumerConfig" ref="consumer" />
         <property name="registries">
             <list>
                 <ref bean="registry" />
@@ -48,6 +47,8 @@
     </bean>
     <bean id="provider" class="org.apache.dubbo.config.ProviderConfig">
         <property name="port" value="20880"></property>
+    </bean>
+    <bean id="consumer" class="org.apache.dubbo.config.ConsumerConfig">
     </bean>
 
     <bean id="module" class="org.apache.dubbo.config.ModuleConfig">

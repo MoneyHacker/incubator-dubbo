@@ -17,6 +17,7 @@
 
 package org.apache.dubbo.config;
 
+import org.apache.dubbo.config.utils.DubboConfigUtil;
 import org.junit.Test;
 
 import java.util.HashMap;
@@ -42,7 +43,7 @@ public class ProviderConfigTest {
         ProviderConfig provider = new ProviderConfig();
         provider.setDefault(true);
         Map<String, String> parameters = new HashMap<String, String>();
-        ProviderConfig.appendParameters(parameters, provider);
+        DubboConfigUtil.appendParameters(parameters, provider);
         assertThat(provider.isDefault(), is(true));
         assertThat(parameters, not(hasKey("default")));
     }
@@ -52,7 +53,7 @@ public class ProviderConfigTest {
         ProviderConfig provider = new ProviderConfig();
         provider.setHost("demo-host");
         Map<String, String> parameters = new HashMap<String, String>();
-        ProviderConfig.appendParameters(parameters, provider);
+        DubboConfigUtil.appendParameters(parameters, provider);
         assertThat(provider.getHost(), equalTo("demo-host"));
         assertThat(parameters, not(hasKey("host")));
     }
@@ -62,7 +63,7 @@ public class ProviderConfigTest {
         ProviderConfig provider = new ProviderConfig();
         provider.setPort(8080);
         Map<String, String> parameters = new HashMap<String, String>();
-        ProviderConfig.appendParameters(parameters, provider);
+        DubboConfigUtil.appendParameters(parameters, provider);
         assertThat(provider.getPort(), is(8080));
         assertThat(parameters, not(hasKey("port")));
     }
@@ -72,7 +73,7 @@ public class ProviderConfigTest {
         ProviderConfig provider = new ProviderConfig();
         provider.setPath("/path");
         Map<String, String> parameters = new HashMap<String, String>();
-        ProviderConfig.appendParameters(parameters, provider);
+        DubboConfigUtil.appendParameters(parameters, provider);
         assertThat(provider.getPath(), equalTo("/path"));
         assertThat(provider.getContextpath(), equalTo("/path"));
         assertThat(parameters, not(hasKey("path")));
@@ -83,7 +84,7 @@ public class ProviderConfigTest {
         ProviderConfig provider = new ProviderConfig();
         provider.setContextpath("/context-path");
         Map<String, String> parameters = new HashMap<String, String>();
-        ProviderConfig.appendParameters(parameters, provider);
+        DubboConfigUtil.appendParameters(parameters, provider);
         assertThat(provider.getContextpath(), equalTo("/context-path"));
         assertThat(parameters, not(hasKey("/context-path")));
     }
@@ -170,7 +171,7 @@ public class ProviderConfigTest {
         ProviderConfig provider = new ProviderConfig();
         provider.setPrompt("#");
         Map<String, String> parameters = new HashMap<String, String>();
-        ProviderConfig.appendParameters(parameters, provider);
+        DubboConfigUtil.appendParameters(parameters, provider);
         assertThat(provider.getPrompt(), equalTo("#"));
         assertThat(parameters, hasEntry("prompt", "%23"));
     }

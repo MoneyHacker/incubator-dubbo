@@ -17,6 +17,7 @@
 
 package org.apache.dubbo.config;
 
+import org.apache.dubbo.config.utils.DubboConfigUtil;
 import org.junit.Test;
 
 import java.util.HashMap;
@@ -56,7 +57,8 @@ public class ArgumentConfigTest {
         argument.setType("int");
         argument.setCallback(true);
         Map<String, String> parameters = new HashMap<String, String>();
-        AbstractServiceConfig.appendParameters(parameters, argument);
+        DubboConfigUtil.appendParameters(parameters, argument);
+        //AbstractServiceConfig.appendParameters(parameters, argument);
         assertThat(parameters, hasEntry("callback", "true"));
         assertThat(parameters.size(), is(1));
     }

@@ -161,7 +161,7 @@ public abstract class AbstractServiceConfig extends AbstractInterfaceConfig {
     }
 
     public List<ProtocolConfig> getProtocols() {
-        return protocols;
+        return protocols == null ? Arrays.asList(this.getApplication().getProtocolConfig()) :protocols;
     }
 
     @SuppressWarnings({"unchecked"})
